@@ -1,3 +1,67 @@
 page-home {
+    ion-content{
+        font-family: 'Raleway',sans-serif;
+        background-color: color($colors,dark,base) !important;
+    }
 
+    ion-title span{
+        font-size: 25px !important;
+        font-family: 'Lobster' !important;
+    }
+    .informativo-card{
+        padding:5px;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+    .box{
+        padding: 20px;
+        flex-basis: 49%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background-color: color($colors,primary,base);
+        
+        p{
+            padding: 5px;
+            font-size: 16px;
+            color: white;
+            text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+        h1{
+            font-size: 28px;
+            color: white;
+            text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+    }
+    .right-pn{
+        background-color: color($colors,secondary,base);
+    }
+
+    small{
+        color:color($colors,secondary,base);
+    }
+
+    .welcome{
+        color:color($colors,primary,base);
+        box-shadow: 1px 2px 2px color($colors,secondary,base);
+        border-radius: 5px;
+    }
+
+    .welcome p{
+        font-size: 18px !important;
+    }
+    .no-registers{
+        padding: 20px;
+    }
+
+    @media screen and (max-width:360px){
+        .text-small{
+            text-align: center !important;
+        }
+        .notify-p{
+            font-size: 12px !important;
+        }
+    }
 }

@@ -1,14 +1,65 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
+
+
     <ion-title>
-      Ionic Blank
+      <span>Marcia Express</span>
     </ion-title>
+
+    <ion-buttons right>
+      <button (click)="showNotifications()" ion-button clear icon-only>
+        <ion-icon class="fa fa-bell fa-lg"></ion-icon>
+      </button>
+      <button (click)="goToAbout()" ion-button clear icon-only>
+        <ion-icon class="fa fa-question-circle fa-lg"></ion-icon>
+      </button>
+      <button (click)="logOut()" ion-button clear icon-only>
+        <ion-icon class="fa fa-sign-out fa-lg"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-card class="welcome">
+    <ion-card-content>
+      <b>Bem vindo(a):</b>
+      <p>{{userName}}</p>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card class="informativo-card">
+    <div class="box left-pn">
+      <p>Seu valor para:</p>
+      <h1>{{actualMonth}}</h1>
+    </div>
+    <div class="box right-pn">
+      <h1 class="text-normal">{{totalPeriod | currency:'BRL':true}}</h1>
+      <p class="text-small">*valor total no mês</p>
+
+    </div>
+  </ion-card>
+
+  <ion-card class="lista-compras">
+    <ion-list>
+      <ion-item-divider color="secondary">Valores por cartões utilizados</ion-item-divider>
+      <ion-item *ngFor="let card of cardList">
+        <ion-icon item-start large class="fa fa-credit-card"></ion-icon>
+        <h2>{{card.name}}
+        </h2>
+        <p>{{card.value | currency:'BRL':true}}</p>
+      </ion-item>
+      <ion-item *ngIf="!cardList.length" text-center>
+        <p class="no-registers">Sem lançamentos no periodo.</p>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+  <ion-card class="notificacao">
+    <ion-card-content text-center>
+      <p class="notify-p">Fez alguma compra no cartão de Marcia? Ajude enviando uma notificação de aviso de compra.</p>
+      <button (click)="sendNotification()" ion-button color="secondary">Enviar notificação</button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

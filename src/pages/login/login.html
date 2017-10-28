@@ -1,0 +1,44 @@
+<ion-content class="login-bg">
+    <div class="login-section">
+        <p class="login-title">
+            <i class="fa fa-sellsy fa-lg"></i>
+            <span>Marcia Express</span>
+        </p>
+        <div class="pn-login">
+            <form [formGroup]="loginForm">
+                <ion-grid class="fm-login">
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-input formControlName="username" type="text" placeholder="Usuario"></ion-input>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-input formControlName="password" type="password" placeholder="Senha"></ion-input>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-item>
+                                <ion-label>Lembrar de mim</ion-label>
+                                <ion-checkbox formControlName="remember" color="secondary"></ion-checkbox>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-12 text-center>
+                            <button (click)="login()" class="btn-login" ion-button color="secondary">Entrar</button>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <p class="text-white text-big">Não tem acesso? solicite aqui</p>
+                            <button (click)="requestAccess()" ion-button color="dark">Solicitar Acesso</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+        </div>
+    </div>
+</ion-content>
