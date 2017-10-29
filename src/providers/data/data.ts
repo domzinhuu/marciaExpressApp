@@ -25,9 +25,9 @@ export class DataProvider {
 
   }
 
-  sendNotify(): Observable<Result> {
+  sendNotify(description:string): Observable<Result> {
     return Observable.fromPromise(this.authProvider.getUserLogged()).mergeMap(user => {
-      const notify = new Notify(user.id, `${user.completeName} realizou uma nova compra.`)
+      const notify = new Notify(user.id, `${user.completeName} realizou uma nova compra.`,description)
       const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
       
       return this.http.post<Result>(`${this.url_api}/save/notify`, notify, { headers })

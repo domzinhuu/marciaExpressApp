@@ -40,43 +40,36 @@ export class HomePage {
   }
 
 
-  showNotifications(){
+  showNotifications() {
     this.alertCtrl.create({
-      message:'Você não possui nenhuma notificação',
-      buttons:['Ok']
+      message: 'Você não possui nenhuma notificação',
+      buttons: ['Ok']
     }).present()
   }
 
   sendNotification() {
-    const loading = this.loadCtrl.create({
-      content: 'Aguarde...',
-      spinner: 'bubbles'
-    })
 
     this.alertCtrl.create({
       title: 'Confirmação',
-      message: 'Você realizou uma compra e deseja notificar Marcia?',
+      subTitle: 'Você realizou uma compra e deseja notificar Marcia?',
+      message: 'O que comprou?',
+      inputs: [{
+        name: 'description',
+        placeholder: 'Ex: Bicicleta de 250R$ em 5x na Amazonas bike'
+      }],
       buttons: [
         {
           text: 'Sim',
-          handler: () => {
-            loading.present()
-            this.dataProvider.sendNotify().subscribe(result => {
-              loading.dismiss()
+          handler: (data) => {
+            if (!data.description) {
+              console.log(data);
               this.toast.create({
-                message: result.messages.toString(),
-                duration: 3000
-              }).present()
-
-
-            }, fail => {
-              loading.dismiss()
-              this.toast.create({
-                message: fail.error,
+                message: 'Informe por favor o que foi comprado e o valor e o local da compra..',
                 duration: 5000
-              }).present()
-
-            })
+              }).present();
+            } else {
+              this.saveNotify(data.description)
+            }
           }
         }, {
           text: 'Não',
@@ -89,8 +82,33 @@ export class HomePage {
     this.navCtrl.push(AboutPage)
   }
 
-  logOut(){
+  logOut() {
     this.authProvider.logOut();
     this.navCtrl.setRoot(LoginPage)
+  }
+
+  private saveNotify(description) {
+    const loading = this.loadCtrl.create({
+      content: 'Aguarde...',
+      spinner: 'bubbles'
+    })
+
+    loading.present()
+    this.dataProvider.sendNotify(description).subscribe(result => {
+      loading.dismiss()
+      this.toast.create({
+        message: result.messages.toString(),
+        duration: 3000
+      }).present()
+
+
+    }, fail => {
+      loading.dismiss()
+      this.toast.create({
+        message: fail.error,
+        duration: 5000
+      }).present()
+
+    })
   }
 }
