@@ -1,9 +1,10 @@
+import { HistoryPageModule } from '../pages/history/history.module';
 import { CustomErrorHandler } from './app.error-handler';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutPageModule } from './../pages/about/about.module';
 import { LoginPageModule } from './../pages/login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage'
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,7 @@ import { DataProvider } from '../providers/data/data';
     LoginPageModule,
     HttpClientModule,
     AboutPageModule,
+    HistoryPageModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
       name: '__medb',
@@ -40,6 +42,7 @@ import { DataProvider } from '../providers/data/data';
     SplashScreen,
     AuthProvider,
     DataProvider,
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     { provide: ErrorHandler, useClass: CustomErrorHandler }
   ]
 })

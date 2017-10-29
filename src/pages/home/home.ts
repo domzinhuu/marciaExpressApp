@@ -1,3 +1,4 @@
+import { HistoryPage } from './../history/history';
 import { LoginPage } from './../login/login';
 import { AuthProvider } from './../../providers/auth/auth';
 import { DataProvider } from './../../providers/data/data';
@@ -21,7 +22,8 @@ export class HomePage {
     private authProvider: AuthProvider, private loadCtrl: LoadingController, private toast: ToastController,
     private alertCtrl: AlertController) { }
 
-  ionViewDidLoad() {
+ 
+    ionViewDidLoad() {
     const loading = this.loadCtrl.create({
       content: 'Carregando...',
       spinner: 'bubbles'
@@ -40,11 +42,8 @@ export class HomePage {
   }
 
 
-  showNotifications() {
-    this.alertCtrl.create({
-      message: 'Você não possui nenhuma notificação',
-      buttons: ['Ok']
-    }).present()
+  showHistory() {
+    this.navCtrl.push(HistoryPage)
   }
 
   sendNotification() {
@@ -78,6 +77,7 @@ export class HomePage {
       ]
     }).present()
   }
+  
   goToAbout() {
     this.navCtrl.push(AboutPage)
   }

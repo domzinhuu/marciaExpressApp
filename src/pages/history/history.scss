@@ -1,0 +1,14 @@
+page-history {
+    ion-content{
+        font-family: 'Raleway',sans-serif;
+        background-color: color($colors,dark,base) !important;
+    }
+
+    .card-header{
+        background-color: color($colors,primary,base);
+        color: white;
+        font-weight: bold;
+
+    }
+
+}

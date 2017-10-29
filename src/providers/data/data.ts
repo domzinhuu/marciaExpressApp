@@ -25,6 +25,14 @@ export class DataProvider {
 
   }
 
+  getHistory(): Observable<any> {
+    return Observable.fromPromise(this.authProvider.getUserLogged()).mergeMap(user => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
+      return this.http.get<any>(`${this.url_api}/user/${user.id}/history`, { headers })
+    })
+
+  }
+
   sendNotify(description:string): Observable<Result> {
     return Observable.fromPromise(this.authProvider.getUserLogged()).mergeMap(user => {
       const notify = new Notify(user.id, `${user.completeName} realizou uma nova compra.`,description)
