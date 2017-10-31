@@ -19,23 +19,27 @@
 <ion-content>
   <ion-card>
     <ion-card-content text-center class="card-body">
-      <p>Essas foram as suas compras este ano.</p>
+      <p *ngIf="history.length">Essas foram as suas compras este ano. Estão todas agrupadas pela data de compra.</p>
+      <p *ngIf="!history.length">Você não fez nenhuma compra esse ano nos cartões de Marcia!</p>
     </ion-card-content>
   </ion-card>
   <ion-card>
+
     <ion-item-group>
       <ng-container *ngFor="let item of history">
         <ion-item-divider color="secondary">{{item[0].paymentMonth}} / Lojas</ion-item-divider>
         <ng-container *ngFor="let compra of item">
-          <ion-item>
-            <ion-grid>
-              <ion-row>
-                <ion-col class="text-normal" col-9>{{compra.local}}</ion-col>
-                <ion-col col-3 class="text-normal">{{compra.value/100 | currency:'BRL':true}}</ion-col>
-              </ion-row>
-            </ion-grid>
-            <hr>
-          </ion-item>
+            <ion-list>
+                <ion-item>
+                  <ion-thumbnail item-start>
+                      <p class="thumb-label">Dia</p>
+                      <p class="thumb"> {{compra.buyAt | date:'dd'}}</p>
+                  </ion-thumbnail>
+                  <h2>{{compra.product}}</h2>
+                  <p>{{compra.local}}</p>
+                  <button class="text-normal" ion-button clear item-end>{{compra.value/100 | currency:'BRL':true}}</button>
+                </ion-item>
+              </ion-list>
         </ng-container>
 
       </ng-container>

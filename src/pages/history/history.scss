@@ -11,4 +11,22 @@ page-history {
 
     }
 
+    ion-thumbnail{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color:color($colors,primary,base);
+        border-radius: 30%;
+        
+    }
+
+    .thumb-label{
+        color: white;
+    }
+    .thumb{
+        font-size: 1.2em;        
+        color: white;
+    }
+
 }

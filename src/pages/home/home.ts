@@ -32,13 +32,18 @@ export class HomePage {
     loading.present()
     this.authProvider.getUserLogged().then(user => {
       this.userName = user.completeName;
-      loading.dismiss()
+
+      this.dataProvider.getHomeData().subscribe(result => {
+        loading.dismiss()
+        this.cardList = result.data.cardList
+        this.totalPeriod = result.data.totalPeriod
+        
+        const paymentDate = new Date(this.cardList[0].paymentDate)
+        this.actualMonth = MONTHS[paymentDate.getMonth()]
+      })
     })
 
-    this.dataProvider.getHomeData().subscribe(result => {
-      this.cardList = result.data.cardList
-      this.totalPeriod = result.data.totalPeriod
-    })
+    
   }
 
 
