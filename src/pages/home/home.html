@@ -49,7 +49,7 @@
         <ion-icon item-start large class="fa fa-credit-card"></ion-icon>
         <h2>{{card.name}}
         </h2>
-        <p>{{card.value | currency:'BRL':true}}</p>
+        <p class="text-normal">{{card.value | currency:'BRL':true}}</p>
       </ion-item>
       <ion-item *ngIf="!cardList.length" text-center>
         <p class="no-registers">Sem lançamentos no periodo.</p>
