@@ -8,7 +8,7 @@
 
     <ion-buttons right>
       
-      <button (click)="showHistory()" ion-button clear>
+      <button (click)="showHistory()" ion-button icon-only clear>
         <ion-icon class="fa fa-history fa-lg"></ion-icon>
       </button>
       
@@ -47,14 +47,19 @@
       <ion-item-divider color="secondary">Valores por cartões utilizados</ion-item-divider>
       <ion-item *ngFor="let card of cardList">
         <ion-icon item-start large class="fa fa-credit-card"></ion-icon>
-        <h2>{{card.name}}
-        </h2>
+        <p style="font-weight: 500">{{card.name}}
+        </p>
         <p class="text-normal">{{card.value | currency:'BRL':true}}</p>
+
+        <button item-end ion-button i class="" (click)="goToCheckFatura(card.name,card.id)">
+          detalhes
+        </button>
+        <hr>
       </ion-item>
       <ion-item *ngIf="!cardList.length" text-center>
         <p class="no-registers">Sem lançamentos no periodo.</p>
       </ion-item>
-
+      
     </ion-list>
   </ion-card>
 

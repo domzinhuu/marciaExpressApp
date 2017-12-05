@@ -2,7 +2,7 @@ import { Notify } from '../../models/notify.model';
 import { AuthProvider } from './../auth/auth';
 import { Result } from './../../models/result.model';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
@@ -33,6 +33,18 @@ export class DataProvider {
 
   }
 
+  getDetails(month,year,userId,cardId): Observable<any>{
+    return Observable.fromPromise(this.authProvider.getUserLogged()).mergeMap(user=>{
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`)
+      let params = new HttpParams()
+      params = params.append('month',month)
+      params = params.append('year',year)
+      params = params.append('card',cardId)
+      params = params.append('user',userId)
+
+      return this.http.get<any>(`${this.url_api}`, { headers,params})
+    })
+  }
   sendNotify(description:string): Observable<Result> {
     return Observable.fromPromise(this.authProvider.getUserLogged()).mergeMap(user => {
       const notify = new Notify(user.id, `${user.completeName} realizou uma nova compra.`,description)

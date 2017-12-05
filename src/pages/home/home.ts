@@ -6,6 +6,7 @@ import { AboutPage } from './../about/about';
 import { Component } from '@angular/core';
 import { AlertController, LoadingController, NavController, ToastController } from 'ionic-angular';
 import { MONTHS } from '../../shared/variables.utils';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-home',
@@ -66,7 +67,6 @@ export class HomePage {
           text: 'Sim',
           handler: (data) => {
             if (!data.description) {
-              console.log(data);
               this.toast.create({
                 message: 'Informe por favor o que foi comprado e o valor e o local da compra..',
                 duration: 5000
@@ -85,6 +85,10 @@ export class HomePage {
   
   goToAbout() {
     this.navCtrl.push(AboutPage)
+  }
+
+  goToCheckFatura(cardName,cardId){
+    this.navCtrl.push(DetailsPage,{cardName:cardName,cardId:cardId});
   }
 
   logOut() {

@@ -1,0 +1,31 @@
+<!--
+  Generated template for the DetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>{{cardName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+  <ion-list>
+    <ion-item-divider color="secondary">Dezembro</ion-item-divider>
+    <ion-item *ngFor="let register of parcelas">
+      <p>{{register.actual}} {{register.productName}}</p>
+      <p item-end class="text-normal">{{register.value | currency:'BRL':true}}</p>
+    </ion-item>
+    <hr>
+    <ion-item >
+      <h3>Total</h3>
+      <h3 class="text-normal" style="font-size: 1.2em" item-end>{{total | currency:'BRL':true}}</h3>
+    </ion-item>
+  </ion-list>
+</ion-card>
+</ion-content>
