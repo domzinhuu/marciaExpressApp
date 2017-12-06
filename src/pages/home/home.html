@@ -47,8 +47,8 @@
       <ion-item-divider color="secondary">Valores por cartões utilizados</ion-item-divider>
       <ion-item *ngFor="let card of cardList">
         <ion-icon item-start large class="fa fa-credit-card"></ion-icon>
-        <p style="font-weight: 500">{{card.name}}
-        </p>
+        <h2 style="font-weight: 500">{{card.name}}</h2>
+        <h3>{{card.description}}</h3>
         <p class="text-normal">{{card.value | currency:'BRL':true}}</p>
 
         <button item-end ion-button i class="" (click)="goToCheckFatura(card.name,card.id)">

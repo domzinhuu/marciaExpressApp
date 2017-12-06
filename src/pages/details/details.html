@@ -18,7 +18,7 @@
   <ion-list>
     <ion-item-divider color="secondary">Dezembro</ion-item-divider>
     <ion-item *ngFor="let register of parcelas">
-      <p>{{register.actual}} {{register.productName}}</p>
+      <p>{{register.actual}} {{register.productName}} - {{register.local}}</p>
       <p item-end class="text-normal">{{register.value | currency:'BRL':true}}</p>
     </ion-item>
     <hr>

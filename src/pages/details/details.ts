@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { MONTHS } from '../../shared/variables.utils';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -13,7 +13,6 @@ import { LoadingController } from 'ionic-angular/components/loading/loading-cont
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-details',
   templateUrl: 'details.html',
